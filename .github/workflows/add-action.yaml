@@ -1,7 +1,7 @@
 name: Add Issue Body to event.yml
 on:
-  label:
-    types: [created]
+  issues:
+    types: [labeled]
 jobs:
   extract-issue-body:
     if: github.event.label.name == 'add-event'
