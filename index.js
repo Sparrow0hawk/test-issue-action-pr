@@ -6,7 +6,7 @@ const jsonString = process.argv[2];
 
 try {
   // Parse the JSON string into an object
-  const jsonObject = JSON.parse(jsonString.replaceAll("\n", "\\n"));
+  const jsonObject = JSON.parse(jsonString);
 
   // Check if the file exists
   const filePath = 'events.yaml';
@@ -20,7 +20,7 @@ try {
     const existingYamlObject = yaml.parse(existingYamlString);
 
     // add a new event by editing the events prop
-    existingYamlObject.events = [existingYamlObject.events, jsonObject];
+    existingYamlObject.events = [existingYamlObject.events, jsonObject].flat();
 
     // Convert the merged object to YAML
     const mergedYamlString = yaml.stringify(existingYamlObject);
