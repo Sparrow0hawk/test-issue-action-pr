@@ -1,9 +1,15 @@
 events:
-
-  name: "Super magic: foo"
-  description: |
-    A big long description of something important
-    like this
-    and this
-  duration: {minutes: 60}
-  begin: 2023-06-09 19:00:00
+  - name: "Super magic: foo"
+    description: |
+      A big long description of something important
+      like this
+      and this
+    duration:
+      minutes: 60
+    begin: 2023-06-09 19:00:00
+  - name: Fantastic event
+    description: |
+      Foo bar something amazing
+      over multiple lines
+      and lines and 
+      lines
