@@ -9,6 +9,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: |
+          npm install
     
       - name: Parse Issue Body
         uses: peter-murray/issue-body-parser-action@v1
@@ -22,13 +28,8 @@ jobs:
       - name: Append data to file
         env:
           DATA: ${{ steps.issue_body_parser.outputs.payload }}
-          NAME: ${{ fromJson(steps.issue_body_parser.outputs.payload).name }}
-          DESC: ${{ fromJson(steps.issue_body_parser.outputs.payload).description }}
         run: |
-          cat <<EOF >> events.yaml
-            name: "$NAME"
-            description: |
-              $DESC
+          node index.js $DATA
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
