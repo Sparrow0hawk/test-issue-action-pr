@@ -6,7 +6,7 @@ const jsonString = process.argv[2];
 
 try {
   // Parse the JSON string into an object
-  const jsonObject = JSON.parse(jsonString);
+  const jsonObject = JSON.parse(jsonString.replaceAll("\n", "\\n"));
 
   // Check if the file exists
   const filePath = 'events.yaml';
