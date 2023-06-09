@@ -22,8 +22,13 @@ jobs:
       - name: Append data to file
         env:
           DATA: ${{ steps.issue_body_parser.outputs.payload }}
+          NAME: ${{fromJson(steps.issue_body_parser_request.outputs.payload).name }}
+          DESC: ${{ fromJson(steps.issue_body_parser_request.outputs.payload).description }}
         run: |
-          echo $DATA >> events.yaml
+          cat <<EOF >> events.yaml
+            name: "$NAME"
+            description: |
+              $DESC
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
