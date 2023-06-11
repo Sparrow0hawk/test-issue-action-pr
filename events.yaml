@@ -13,3 +13,9 @@ events:
       over multiple lines
       and lines and 
       lines
+  - name: Super event
+    description: |
+      Foo bar something amazing
+      over multiple lines
+      and lines and 
+      lines
